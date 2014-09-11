@@ -38,6 +38,12 @@ shinyServer(function(input, output) {
     subset(dataset,dataset$mean_age==max(dataset$mean_age))
   })
   
+  maxOccSp<-reactive({
+    dataset<-dataInput()
+    species<-subset(dataset,dataset$matched_rank==3)
+    subset(species,species$mean_age==max(species$mean_age))
+  })
+  
   output$table1<-renderTable({
     max_occ<-maxOcc()
     data.frame(taxon=max_occ$matched_name,
@@ -51,11 +57,7 @@ shinyServer(function(input, output) {
     
     
    output$table2<-renderTable({
-      max_occ<-maxOcc()
-      if (!3 %in% max_occ$matched_rank) {
-          species_occs<-subset(max_occ,max_occ$matched_rank==3)
-          max_occ<-subset(species_occs,species_occs$mean_age==max(species_occs$mean_age))
-      }
+      max_occ<-maxOccSp()
       data.frame(taxon=max_occ$matched_name,
                  collection=max_occ$collection_no,
                 early_interval=max_occ$early_interval,
