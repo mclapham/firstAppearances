@@ -8,6 +8,8 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
+      img(src ="firstApp_logo.png",height=120,width=120),
+      
       h4("Find the oldest representative of a group, based on data from the Paleobiology Database"),
       
       textInput("taxon", "Enter a taxon name:","Omaliinae"),
@@ -19,7 +21,9 @@ shinyUI(fluidPage(
       
       h5("If you use this information in a publication, please acknowledge the Paleobiology Database"),
       
-      h6("Comments or suggestions? Email mclapham@ucsc.edu")
+      h6("Comments or suggestions? Email mclapham@ucsc.edu"),
+      
+      a("https://github.com/mclapham/firstAppearances")
                   
     ),
 
