@@ -54,7 +54,7 @@ shinyServer(function(input, output) {
   maxOccSp<-reactive({
     dataset<-dataInput()
     species<-subset(dataset,dataset$matched_rank==3)
-    species<-subset(species,species$genus_reso=="" | species$genus_reso=="n. gen.")
+    species<-subset(species,is.na(species$genus_reso)==T | species$genus_reso=="n. gen.")
     subset(species,species$mean_age==max(species$mean_age))
   })
   
